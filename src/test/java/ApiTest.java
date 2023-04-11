@@ -16,7 +16,7 @@ public class ApiTest {
 
     String token = "8e893299-51f5-496b-85db-a86334bf9580";
 
-    static int index = 18;
+    static int index = 20;
 
     RequestSpecification requestSpecification =
             given()

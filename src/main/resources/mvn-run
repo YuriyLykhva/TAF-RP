@@ -1,0 +1,1 @@
+mvn -Dbrowser=CHROME clean test

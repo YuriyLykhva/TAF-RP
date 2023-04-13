@@ -3,6 +3,7 @@ import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
+import java.util.Random;
 
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertEquals;
@@ -16,7 +17,7 @@ public class ApiTest {
 
     String token = "8e893299-51f5-496b-85db-a86334bf9580";
 
-    static int index = 21;
+    static int index = new Random().nextInt(1000);
 
     RequestSpecification requestSpecification =
             given()

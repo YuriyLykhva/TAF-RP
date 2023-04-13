@@ -1,3 +1,5 @@
+package tests;
+
 import core.model.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;

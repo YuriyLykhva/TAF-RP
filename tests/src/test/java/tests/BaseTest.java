@@ -1,3 +1,5 @@
+package tests;
+
 import core.driver.BrowserEnum;
 import core.driver.WebDriverFactory;
 import org.openqa.selenium.WebDriver;

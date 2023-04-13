@@ -1,3 +1,5 @@
+package tests;
+
 import io.qameta.allure.Description;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -39,7 +41,7 @@ public class ApiTest {
     }
 
     @Test(priority = 2)
-//    @Description("POST API test verifies that new user is created and code 201 returns")
+    @Description("POST API test verifies that new user is created and code 201 returns")
     public void postTest() {
 
         String url = "v1/user";
@@ -68,6 +70,7 @@ public class ApiTest {
         assertEquals(response.getStatusCode(), 201);
     }
 
+    @Description("DELETE API test verifies that user is deleted and code 200 returns")
     @Test(priority = 3)
     public void deleteTest() {
 

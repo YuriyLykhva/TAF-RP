@@ -11,8 +11,8 @@
 
     <test name="all">
         <classes>
-            <class name="ApiTest"/>
-            <class name="LoginTest"/>
+            <class name="tests.ApiTest"/>
+            <class name="tests.LoginTest"/>
         </classes>
     </test>
 </suite>

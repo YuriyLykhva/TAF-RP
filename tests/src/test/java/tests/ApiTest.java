@@ -19,7 +19,7 @@ public class ApiTest {
 
     String token = "8e893299-51f5-496b-85db-a86334bf9580";
 
-    static int index = new Random().nextInt(1000);
+    static int index = new Random().nextInt(100000);
 
     RequestSpecification requestSpecification =
             given()

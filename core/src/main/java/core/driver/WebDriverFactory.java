@@ -3,8 +3,13 @@ package core.driver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ThreadGuard;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WebDriverFactory {
 
@@ -12,8 +17,20 @@ public class WebDriverFactory {
 
     public static synchronized WebDriver getDriver() {
         if (driver.get() == null) {
+
+//            ChromeOptions chromeOptions = new ChromeOptions();
+//            chromeOptions.setCapability("browserVersion", "112");
+//            chromeOptions.setCapability("platformName", "Windows 11");
+
             WebDriverManager.chromedriver().setup();
             driver.set(ThreadGuard.protect(new ChromeDriver()));
+//            try {
+//                driver.set(ThreadGuard.protect(
+//                        new RemoteWebDriver(
+//                                new URL("http://localhost:4444/"), chromeOptions)));
+//            } catch (MalformedURLException e) {
+//                throw new RuntimeException(e);
+//            }
         }
         return driver.get();
     }
@@ -22,30 +39,14 @@ public class WebDriverFactory {
     public static void clearDriver() {
         driver.remove();
     }
-
-    /*
-
-    private static WebDriver driver;
-
-    public static WebDriver getDriver(BrowserEnum browser) {
-
-        if (driver == null) {
-            switch (browser) {
-                case CHROME: {
-                    WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
-                    break;
-                }
-                case FIREFOX: {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
-                    break;
-                }
-                default: {
-                    throw new RuntimeException("Browser not supported: " + browser);
-                }
-            }
-        }
-        return driver;
-    }*/
 }
+
+/*
+ChromeOptions chromeOptions = new ChromeOptions();
+chromeOptions.setCapability("browserVersion", "67");
+chromeOptions.setCapability("platformName", "Windows XP");
+WebDriver driver = new RemoteWebDriver(new URL("http://www.example.com"), chromeOptions);
+driver.get("http://www.google.com");
+driver.quit();
+
+ */

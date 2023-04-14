@@ -1,13 +1,11 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
 <suite name="Suite1" verbose="1">
-<!--    <parameter name="login" value="default"/>-->
-<!--    <parameter name="password" value="1q2w3e"/>-->
     <parameter name="browser" value="CHROME"/>
 
-<!--    <listeners>-->
-<!--        <listener class-name="core.util.TestListener"/>-->
-<!--    </listeners>-->
+    <listeners>
+        <listener class-name="core.util.TestListener"/>
+    </listeners>
 
     <test name="all tests">
         <classes>

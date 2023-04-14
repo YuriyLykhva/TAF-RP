@@ -1,1 +1,2 @@
 mvn -Dbrowser=CHROME clean test
+allure serve tests/target/allure-results

@@ -1,8 +1,5 @@
 package core.util;
 
-//import org.apache.logging.log4j.LogManager;
-//import org.apache.logging.log4j.Logger;
-
 import core.driver.WebDriverFactory;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -16,46 +13,35 @@ import java.io.IOException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- *
-
 public class TestListener implements ITestListener {
-//    private Logger log = LogManager.getRootLogger();
-
-    @Override
-    public void onTestStart(ITestResult iTestResult) {
-        log("Test Started....");
-    }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         log("Test '" + iTestResult.getName() + "' PASSED");
-//        saveScreenshot();
+        if(iTestResult.getTestClass().getName().endsWith("LoginTest")) {
+            saveScreenshot();
+        }
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
-//        saveScreenshot();
+        log("Test '" + iTestResult.getName() + "' FAILED");
+        saveScreenshot();
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
+        log("Test '" + iTestResult.getName() + "' SKIPPED");
     }
 
     @Override
     public void onStart(ITestContext iTestContext) {
+        log("Test Started....");
     }
 
     @Override
     public void onFinish(ITestContext iTestContext) {
-//        saveScreenshot();
+        log("Test finished");
     }
 
     private void saveScreenshot() {
@@ -80,4 +66,4 @@ public class TestListener implements ITestListener {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd_HH-mm-ss");
         return ZonedDateTime.now().format(formatter);
     }
-}*/
+}

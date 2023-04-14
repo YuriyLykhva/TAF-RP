@@ -1,12 +1,30 @@
 package tests;
 
-import core.driver.BrowserEnum;
-import core.driver.WebDriverFactory;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+
+import static core.driver.WebDriverFactory.clearDriver;
+import static core.driver.WebDriverFactory.getDriver;
 
 public class BaseTest {
 
+    @BeforeMethod
+    public void setup() {
+        getDriver().manage().window().maximize();
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        getDriver().quit();
+        clearDriver();
+    }
+
+
+
+
+
+
+
+    /*
     protected WebDriver driver;
 
     @BeforeClass
@@ -25,4 +43,6 @@ public class BaseTest {
         driver.quit();
         driver = null;
     }
+
+     */
 }

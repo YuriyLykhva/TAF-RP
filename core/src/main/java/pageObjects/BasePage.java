@@ -4,9 +4,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import static core.driver.WebDriverFactory.getDriver;
+
+
 public abstract class BasePage {
-    protected WebDriver driver;
-    public static final int WAIT_TIMEOUT_SECONDS = 10;
+    protected WebDriver driver = getDriver();
 
     /**
      * Abstract method
@@ -14,26 +16,11 @@ public abstract class BasePage {
      */
     protected abstract BasePage openPage();
 
-    /**
+    /*
      * Receiving driver for the page
-     * @param driver should be passed here
+//     * @param driver should be passed here
      */
-    protected BasePage(WebDriver driver) {
-        this.driver = driver;
+    protected BasePage() {
         driver.manage().window().maximize();
-    }
-
-    protected void jsClickElement(WebElement element) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
-    }
-
-    /**
-     * Scrolling to the element
-     * @param element become visible
-     */
-    protected void jsViewElement(WebElement element) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].scrollIntoView(true);", element);
     }
 }

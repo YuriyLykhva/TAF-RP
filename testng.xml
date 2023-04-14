@@ -6,10 +6,10 @@
     <parameter name="browser" value="CHROME"/>
 
 <!--    <listeners>-->
-<!--        <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener"/>-->
+<!--        <listener class-name="core.util.TestListener"/>-->
 <!--    </listeners>-->
 
-    <test name="all">
+    <test name="all tests">
         <classes>
             <class name="tests.ApiTest"/>
             <class name="tests.LoginTest"/>

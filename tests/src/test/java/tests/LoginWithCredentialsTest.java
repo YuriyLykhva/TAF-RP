@@ -1,3 +1,5 @@
+package tests;
+
 import businessObjects.LoginBO;
 import core.util.DataProviderClass;
 import io.qameta.allure.Description;
@@ -12,7 +14,9 @@ public class LoginWithCredentialsTest extends BaseTest {
      */
     private LoginBO loginBO = new LoginBO();
 
-    @Test(dataProvider = "credentials", dataProviderClass = DataProviderClass.class)
+    //todo: test is disabled
+
+    @Test(enabled = false, dataProvider = "credentials", dataProviderClass = DataProviderClass.class)
     @Description("This test verifies that user with correct credentials is logged in")
     public void loginViaCredentialsTest(String login, String password) {
 

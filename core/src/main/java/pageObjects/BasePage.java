@@ -18,7 +18,7 @@ public abstract class BasePage {
      * Receiving driver for the page
      * @param driver should be passed here
      */
-    public BasePage(WebDriver driver) {
+    protected BasePage(WebDriver driver) {
         this.driver = driver;
         driver.manage().window().maximize();
     }

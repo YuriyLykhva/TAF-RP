@@ -9,15 +9,14 @@ import static core.driver.WebDriverFactory.getDriver;
 
 public class LoginTest extends BaseTest {
 
-    @Test(priority = 1)
+    @Test
     public void openSignInPage() {
-        new SignInPage()
-                .openPage();
+        new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
         Assert.assertEquals(signInPageTitle, "Report Portal");
     }
 
-    @Test(priority = 100)
+    @Test
     public void loginWithUserViaModel() {
         User user = User.createUser();
         new SignInPage()

@@ -39,7 +39,7 @@
                         <allure.link.tms.pattern>https://example.org/browse/{}</allure.link.tms.pattern>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng.xml</suiteXmlFile>
+<!--                        <suiteXmlFile>testng.xml</suiteXmlFile>-->
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

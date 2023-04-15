@@ -4,7 +4,14 @@ import io.qameta.allure.Description;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.openqa.selenium.Platform;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.Test;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;

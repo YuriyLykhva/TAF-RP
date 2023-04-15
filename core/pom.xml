@@ -99,6 +99,12 @@
         <!--            <artifactId>slf4j-simple</artifactId>-->
         <!--            <version>1.7.30</version>-->
         <!--        </dependency>-->
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-server</artifactId>
+            <version>3.141.59</version>
+        </dependency>
 
     </dependencies>
 

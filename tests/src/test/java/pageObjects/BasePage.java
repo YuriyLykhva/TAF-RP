@@ -14,10 +14,6 @@ public abstract class BasePage {
      */
     protected abstract BasePage openPage();
 
-    /*
-     * Receiving driver for the page
-//     * @param driver should be passed here
-     */
     protected BasePage() {
         driver.manage().window().maximize();
     }

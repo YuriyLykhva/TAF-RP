@@ -1,5 +1,6 @@
 package tests;
 
+import core.util.RetryAnalyzer;
 import io.qameta.allure.Description;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
@@ -35,7 +36,7 @@ public class ApiTest {
                             "Content-Type", "application/json")
                     .baseUri(baseUrl);
 
-    @Test(priority = 1)
+    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
     @Description("GET API test verifies that code 200 returns")
     public void getTest() {
 
@@ -47,7 +48,7 @@ public class ApiTest {
         assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
     @Description("POST API test verifies that new user is created and code 201 returns")
     public void postTest() {
 
@@ -78,7 +79,7 @@ public class ApiTest {
     }
 
     @Description("DELETE API test verifies that user is deleted and code 200 returns")
-    @Test(priority = 3)
+    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
     public void deleteTest() {
 
         String url = "v1/user";

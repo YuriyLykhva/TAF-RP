@@ -1,6 +1,7 @@
 package tests;
 
 import core.model.User;
+import core.util.RetryAnalyzer;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.SignInPage;
@@ -9,14 +10,14 @@ import static core.driver.WebDriverFactory.getDriver;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void openSignInPage() {
         new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
         Assert.assertEquals(signInPageTitle, "Report Portal");
     }
 
-    @Test
+    @Test(retryAnalyzer = RetryAnalyzer.class)
     public void loginWithUserViaModel() {
         User user = User.createUser();
         new SignInPage()

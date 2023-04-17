@@ -6,14 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static core.util.Constants.SIGNINPAGE_URL;
+import static core.util.Constants.SIGNIN_PAGE_URL;
 
 public class SignInPage extends BasePage {
 
-    /**
-     * Receiving driver for the page
-//     * @param driver should be passed here
-     */
     public SignInPage() {
         super();
         PageFactory.initElements(driver, this);
@@ -38,7 +34,7 @@ public class SignInPage extends BasePage {
     @Override
     @Step("Open Sign In Page")
     public SignInPage openPage() {
-        driver.get(SIGNINPAGE_URL);
+        driver.get(SIGNIN_PAGE_URL);
         WaiterWrapperClass.waitForElement(driver, loginField);
         return this;
     }

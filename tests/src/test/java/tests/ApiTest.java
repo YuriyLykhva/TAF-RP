@@ -45,7 +45,7 @@ public class ApiTest {
         Response response = requestSpecification.request(Method.GET, url);
 
         assertEquals(response.jsonPath().getString("userRole"), "ADMINISTRATOR");
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals(response.getStatusCode(), 300);
     }
 
     @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)

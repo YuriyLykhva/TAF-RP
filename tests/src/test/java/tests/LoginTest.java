@@ -14,7 +14,7 @@ public class LoginTest extends BaseTest {
     public void openSignInPage() throws InterruptedException {
         new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         Assert.assertEquals(signInPageTitle, "Report Portal");
     }
 
@@ -27,7 +27,7 @@ public class LoginTest extends BaseTest {
                 .typePassword(user.getPassword())
                 .clickLoginButton();
         String mainPageTitle = getDriver().getTitle();
-        Thread.sleep(5000);
+        Thread.sleep(2000);
         Assert.assertEquals(mainPageTitle, "Report Portal");
     }
 }

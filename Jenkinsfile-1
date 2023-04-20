@@ -3,26 +3,22 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the project from Git
-                checkout([$class: 'GitSCM', branches: [[name: '*/multi-thread-project']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/YuriyLykhva/TAF-RP']]])
+                bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
             }
         }
         stage('Build') {
             steps {
-                // Build the Maven project
-                sh 'mvn clean package'
+                bat 'mvn install'
             }
         }
         stage('Test') {
             steps {
-                // Run the TestNG tests using Maven
-                sh 'mvn test'
+                bat 'mvn test'
             }
-            post {
-                // Publish the TestNG test results
-                always {
-                    junit 'target/surefire-reports/**/*.xml'
-                }
+        }
+        stage('Deploy') {
+            steps {
+                bat 'copy target\\your-maven-project.war \\your-server\\opt\\tomcat\\webapps'
             }
         }
     }

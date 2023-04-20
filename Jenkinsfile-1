@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn install'
+                bat 'mvn clean compile'
             }
         }
         stage('Test') {
@@ -16,9 +16,9 @@ pipeline {
                 bat 'mvn test'
             }
         }
-        stage('Deploy') {
+        stage('Install') {
             steps {
-                bat 'copy target\\your-maven-project.war \\your-server\\opt\\tomcat\\webapps'
+                bat 'mvn install'
             }
         }
     }

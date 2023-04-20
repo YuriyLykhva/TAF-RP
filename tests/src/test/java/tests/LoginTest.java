@@ -11,15 +11,14 @@ import static core.driver.WebDriverFactory.getDriver;
 public class LoginTest extends BaseTest {
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void openSignInPage() throws InterruptedException {
+    public void openSignInPage() {
         new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
-        Thread.sleep(2000);
         Assert.assertEquals(signInPageTitle, "Report Portal");
     }
 
     @Test(retryAnalyzer = RetryAnalyzer.class)
-    public void loginWithUserViaModel() throws InterruptedException {
+    public void loginWithUserViaModel() {
         User user = User.createUser();
         new SignInPage()
                 .openPage()
@@ -27,7 +26,6 @@ public class LoginTest extends BaseTest {
                 .typePassword(user.getPassword())
                 .clickLoginButton();
         String mainPageTitle = getDriver().getTitle();
-        Thread.sleep(2000);
         Assert.assertEquals(mainPageTitle, "Report Portal");
     }
 }

@@ -1,10 +1,26 @@
-/* Requires the Docker Pipeline plugin */
 pipeline {
-    agent { docker { image 'maven:3.9.0-eclipse-temurin-11' } }
+    agent any
     stages {
-        stage('build') {
+        stage('Checkout') {
             steps {
-                bat 'mvn --version'
+                bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
+                bat 'git submodule init'
+                bat 'git submodule update'
+            }
+        }
+        stage('Build') {
+            steps {
+                bat 'mvn clean compile'
+            }
+        }
+        stage('Test') {
+            steps {
+                bat 'mvn test'
+            }
+        }
+        stage('Install') {
+            steps {
+                bat 'mvn install'
             }
         }
     }

@@ -19,11 +19,11 @@ pipeline {
                 bat 'mvn test'
             }
         }
-        stage('Install') {
-            steps {
-                //bat 'mvn install'
-            }
-        }
+//         stage('Install') {
+//             steps {
+//                 bat 'mvn install'
+//             }
+//         }
         stage('Allure') {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'tests/target/allure-results']]

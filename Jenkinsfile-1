@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
- //               cleanWs()
+                cleanWs()
                 bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
                 bat 'git submodule init'
                 bat 'git submodule update'

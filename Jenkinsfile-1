@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Build') {
             steps {
+                cleanWs()
                 bat 'mvn clean compile'
             }
         }

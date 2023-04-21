@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                cleanWs()
+ //               cleanWs()
                 bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
                 bat 'git submodule init'
                 bat 'git submodule update'
@@ -28,6 +28,17 @@ pipeline {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'tests/target/allure-results']]
             }
+        }
+    }
+    post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
 }

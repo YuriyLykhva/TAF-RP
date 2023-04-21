@@ -1,6 +1,11 @@
 pipeline {
     agent any
     stages {
+        stage('Cleanup') {
+            steps {
+                cleanWs()
+            }
+        }
         stage('Checkout') {
             steps {
                 bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'

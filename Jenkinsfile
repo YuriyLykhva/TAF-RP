@@ -1,9 +1,13 @@
 pipeline {
     agent any
+    options {
+        skipDefaultCheckout(true)
+    }
     stages {
         stage('Cleanup') {
             steps {
                 cleanWs()
+                checkout scm
             }
         }
         stage('Checkout') {

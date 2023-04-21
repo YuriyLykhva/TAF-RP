@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-        skipDefaultCheckout(true)
+//         skipDefaultCheckout(true)
     }
     stages {
         stage('Cleanup') {

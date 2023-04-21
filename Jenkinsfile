@@ -11,7 +11,7 @@ pipeline {
         stage('Build') {
             steps {
                 bat 'mvn clean'
-                bat 'mvn compile'
+                //bat 'mvn compile'
             }
         }
         stage('Test') {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat 'mvn install'
+                //bat 'mvn install'
             }
         }
         stage('Allure') {

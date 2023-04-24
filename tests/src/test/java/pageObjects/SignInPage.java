@@ -1,7 +1,6 @@
 package pageObjects;
 
 import core.util.WaiterWrapperClass;
-import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -32,7 +31,6 @@ public class SignInPage extends BasePage {
      * @return Sign In Page opens
      */
     @Override
-    @Step("Open Sign In Page")
     public SignInPage openPage() {
         driver.get(SIGNIN_PAGE_URL);
         WaiterWrapperClass.waitForElement(driver, loginField);

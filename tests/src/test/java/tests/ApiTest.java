@@ -1,16 +1,16 @@
 package tests;
 
-import core.util.RetryAnalyzer;
-import io.qameta.allure.Description;
+//import core.util.RetryAnalyzer;
+//import io.qameta.allure.Description;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
-import static org.testng.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ApiTest {
 
@@ -30,8 +30,7 @@ public class ApiTest {
                             "Content-Type", "application/json")
                     .baseUri(baseUrl);
 
-    @Test(priority = 1, retryAnalyzer = RetryAnalyzer.class)
-    @Description("GET API test verifies that code 200 returns")
+    @Test//(priority = 1, retryAnalyzer = RetryAnalyzer.class)
     public void getTest() {
 
         String url = "v1/user";
@@ -42,8 +41,7 @@ public class ApiTest {
         assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test(priority = 2, retryAnalyzer = RetryAnalyzer.class)
-    @Description("POST API test verifies that new user is created and code 201 returns")
+    @Test//(priority = 2, retryAnalyzer = RetryAnalyzer.class)
     public void postTest() {
 
         String url = "v1/user";
@@ -72,8 +70,7 @@ public class ApiTest {
         assertEquals(response.getStatusCode(), 201);
     }
 
-    @Description("DELETE API test verifies that user is deleted and code 200 returns")
-    @Test(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    @Test//(priority = 3, retryAnalyzer = RetryAnalyzer.class)
     public void deleteTest() {
 
         String url = "v1/user";

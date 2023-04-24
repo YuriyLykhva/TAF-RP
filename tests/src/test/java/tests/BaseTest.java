@@ -1,19 +1,20 @@
 package tests;
 
-import org.testng.annotations.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 
 import static core.driver.WebDriverFactory.clearDriver;
 import static core.driver.WebDriverFactory.getDriver;
 
 public class BaseTest {
 
-    @BeforeMethod
-    public void setup() {
+    @BeforeAll
+    public static void setup() {
         getDriver().manage().window().maximize();
     }
 
-    @AfterMethod
-    public void tearDown() {
+    @AfterAll
+    public static void tearDown() {
         getDriver().quit();
         clearDriver();
     }

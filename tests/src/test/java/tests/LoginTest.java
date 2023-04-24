@@ -1,23 +1,22 @@
 package tests;
 
 import core.model.User;
-import core.util.RetryAnalyzer;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import pageObjects.SignInPage;
 
 import static core.driver.WebDriverFactory.getDriver;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest extends BaseTest {
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test//(retryAnalyzer = RetryAnalyzer.class)
     public void openSignInPage() {
         new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
-        Assert.assertEquals(signInPageTitle, "Report Portal");
+        assertEquals(signInPageTitle, "Report Portal");
     }
 
-    @Test(retryAnalyzer = RetryAnalyzer.class)
+    @Test//(retryAnalyzer = RetryAnalyzer.class)
     public void loginWithUserViaModel() {
         User user = User.createUser();
         new SignInPage()
@@ -26,6 +25,6 @@ public class LoginTest extends BaseTest {
                 .typePassword(user.getPassword())
                 .clickLoginButton();
         String mainPageTitle = getDriver().getTitle();
-        Assert.assertEquals(mainPageTitle, "Report Portal");
+        assertEquals(mainPageTitle, "Report Portal");
     }
 }

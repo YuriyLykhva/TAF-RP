@@ -40,7 +40,7 @@ public class ApiTest {
         assertEquals(200, response.getStatusCode());
     }
 
-    @RepeatedIfExceptionsTest(repeats = 3)
+//    @RepeatedIfExceptionsTest(repeats = 3)
     @org.junit.Test
     public void postTest() {
 

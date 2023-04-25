@@ -4,7 +4,7 @@
     <parameter name="browser" value="CHROME"/>
 
     <listeners>
-        <listener class-name="core.util.TestListener"/>
+        <listener class-name="core.util.JUnitTestListener"/>
     </listeners>
 
     <test thread-count="8" name="all tests">

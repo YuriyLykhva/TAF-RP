@@ -1,11 +1,9 @@
 package tests;
 
-//import core.util.RetryAnalyzer;
-//import io.qameta.allure.Description;
+import io.github.artsok.RepeatedIfExceptionsTest;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -30,18 +28,20 @@ public class ApiTest {
                             "Content-Type", "application/json")
                     .baseUri(baseUrl);
 
-    @Test//(priority = 1, retryAnalyzer = RetryAnalyzer.class)
+    @RepeatedIfExceptionsTest(repeats = 3)
+    @org.junit.Test
     public void getTest() {
 
         String url = "v1/user";
 
         Response response = requestSpecification.request(Method.GET, url);
 
-        assertEquals(response.jsonPath().getString("userRole"), "ADMINISTRATOR");
-        assertEquals(response.getStatusCode(), 200);
+        assertEquals("ADMINISTRATOR", response.jsonPath().getString("userRole"));
+        assertEquals(200, response.getStatusCode());
     }
 
-    @Test//(priority = 2, retryAnalyzer = RetryAnalyzer.class)
+    @RepeatedIfExceptionsTest(repeats = 3)
+    @org.junit.Test
     public void postTest() {
 
         String url = "v1/user";
@@ -67,10 +67,11 @@ public class ApiTest {
                         .then()
                         .extract().response();
 
-        assertEquals(response.getStatusCode(), 201);
+        assertEquals(201, response.getStatusCode());
     }
 
-    @Test//(priority = 3, retryAnalyzer = RetryAnalyzer.class)
+    @RepeatedIfExceptionsTest(repeats = 3)
+    @org.junit.Test
     public void deleteTest() {
 
         String url = "v1/user";

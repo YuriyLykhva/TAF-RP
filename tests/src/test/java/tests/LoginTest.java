@@ -1,22 +1,26 @@
 package tests;
 
 import core.model.User;
-import org.junit.jupiter.api.Test;
+import io.github.artsok.RepeatedIfExceptionsTest;
+import org.junit.Test;
 import pageObjects.SignInPage;
 
 import static core.driver.WebDriverFactory.getDriver;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+
 public class LoginTest extends BaseTest {
 
-    @Test//(retryAnalyzer = RetryAnalyzer.class)
+    @Test
+    @RepeatedIfExceptionsTest(repeats = 3)
     public void openSignInPage() {
         new SignInPage().openPage();
         String signInPageTitle = getDriver().getTitle();
-        assertEquals(signInPageTitle, "Report Portal");
+        assertEquals("Report Portal", signInPageTitle);
     }
 
-    @Test//(retryAnalyzer = RetryAnalyzer.class)
+    @RepeatedIfExceptionsTest(repeats = 3)
+    @Test
     public void loginWithUserViaModel() {
         User user = User.createUser();
         new SignInPage()
@@ -25,6 +29,6 @@ public class LoginTest extends BaseTest {
                 .typePassword(user.getPassword())
                 .clickLoginButton();
         String mainPageTitle = getDriver().getTitle();
-        assertEquals(mainPageTitle, "Report Portal");
+        assertEquals("Report Portal", mainPageTitle);
     }
 }

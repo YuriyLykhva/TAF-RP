@@ -1,3 +1,4 @@
+package pipeline
 pipeline {
     agent any
     stages {

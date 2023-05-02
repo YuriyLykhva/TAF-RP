@@ -21,13 +21,10 @@ public class LoginTest extends BaseTest {
 
     @RepeatedIfExceptionsTest(repeats = 3)
     @Test
-    public void loginWithUserViaModel() {
+    public void loginWithUserViaModelTest() {
         User user = User.createUser();
         new SignInPage()
-                .openPage()
-                .typeLogin(user.getLogin())
-                .typePassword(user.getPassword())
-                .clickLoginButton();
+                .loginWithUserViaModel(user);
         String mainPageTitle = getDriver().getTitle();
         assertEquals("Report Portal", mainPageTitle);
     }

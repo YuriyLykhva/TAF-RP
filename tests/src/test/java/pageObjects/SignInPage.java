@@ -1,5 +1,6 @@
 package pageObjects;
 
+import core.model.User;
 import core.util.WaiterWrapperClass;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -48,5 +49,13 @@ public class SignInPage extends BasePage {
 
     public void clickLoginButton() {
         loginButton.click();
+    }
+
+    public void loginWithUserViaModel(User user) {
+        new SignInPage()
+                .openPage()
+                .typeLogin(user.getLogin())
+                .typePassword(user.getPassword())
+                .clickLoginButton();
     }
 }

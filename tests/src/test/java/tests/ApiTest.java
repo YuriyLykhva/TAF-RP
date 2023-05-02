@@ -1,9 +1,9 @@
 package tests;
 
-import io.github.artsok.RepeatedIfExceptionsTest;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Test;
 
 import java.util.Random;
 
@@ -28,8 +28,7 @@ public class ApiTest {
                             "Content-Type", "application/json")
                     .baseUri(baseUrl);
 
-    @RepeatedIfExceptionsTest(repeats = 3)
-    @org.junit.Test
+    @Test
     public void getTest() {
 
         String url = "v1/user";
@@ -40,8 +39,7 @@ public class ApiTest {
         assertEquals(200, response.getStatusCode());
     }
 
-//    @RepeatedIfExceptionsTest(repeats = 3)
-    @org.junit.Test
+    @Test
     public void postTest() {
 
         String url = "v1/user";
@@ -70,8 +68,7 @@ public class ApiTest {
         assertEquals(201, response.getStatusCode());
     }
 
-    @RepeatedIfExceptionsTest(repeats = 3)
-    @org.junit.Test
+    @Test
     public void deleteTest() {
 
         String url = "v1/user";

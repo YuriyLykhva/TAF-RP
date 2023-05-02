@@ -31,7 +31,6 @@ public class SignInPage extends BasePage {
      * Opening Sign In Page
      * @return Sign In Page opens
      */
-    @Override
     public SignInPage openPage() {
         driver.get(SIGNIN_PAGE_URL);
         WaiterWrapperClass.waitForElement(driver, loginField);

@@ -12,7 +12,6 @@ public abstract class BasePage {
      * Abstract method
      * @return mandatory method to be implemented in child pages
      */
-    protected abstract BasePage openPage();
 
     protected BasePage() {
         driver.manage().window().maximize();

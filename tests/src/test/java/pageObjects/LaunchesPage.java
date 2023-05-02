@@ -1,6 +1,5 @@
 package pageObjects;
 
-import core.model.User;
 import core.util.WaiterWrapperClass;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -18,10 +17,7 @@ public class LaunchesPage extends BasePage {
     @FindBy(xpath = "//a[@href='#superadmin_personal/launches']")
     private WebElement launches;
 
-    @Override
-    public LaunchesPage openPage() {
-        User user = User.createUser();
-        new SignInPage().loginWithUserViaModel(user);
+    public LaunchesPage openLaunchesPage() {
         WaiterWrapperClass.waitForElement(driver, launches);
         launches.click();
         return this;

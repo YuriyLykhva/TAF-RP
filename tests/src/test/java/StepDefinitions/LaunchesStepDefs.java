@@ -14,7 +14,7 @@ import pageObjects.SignInPage;
 import static core.driver.WebDriverFactory.clearDriver;
 import static core.driver.WebDriverFactory.getDriver;
 
-public class LaunchesStep {
+public class LaunchesStepDefs {
 
     @Given("I have Signed in user")
     public void i_have_signed_in_user() {

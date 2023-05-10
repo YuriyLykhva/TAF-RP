@@ -1,11 +1,14 @@
 package pageObjects;
 
-import core.util.WaiterWrapperClass;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Action;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.FindBys;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
+
+import static core.util.WaiterWrapperClass.waitForElement;
+import static core.util.WaiterWrapperClass.waitUntilElementIsNotDisplayed;
 
 public class ProfileMenu extends BasePage {
     public ProfileMenu() {
@@ -16,32 +19,26 @@ public class ProfileMenu extends BasePage {
     /**
      * Web Elements
      */
+
+    private final String notificationItemPath = "//*[@class=" +
+            "'notificationItem__message-container--16jY2 notificationItem__success--Xv97a']";
     @FindBy(xpath = "//img[@alt='avatar']")
     private WebElement profile;
     @FindBy(xpath = "//*[@class='userBlock__username--2nzpE']")
     private WebElement userName;
 
+    @FindBy(xpath = notificationItemPath)
+    private WebElement notificationItem;
+
+    @FindBys({@FindBy(xpath = notificationItemPath)})
+    private List<WebElement> notificationItems;
+
     public String getLoggedUserName() {
-        //todo:
-
-
-
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-        WaiterWrapperClass.waitForElement(driver, profile);
-        Actions action = new Actions(driver);
-        action.moveToElement(profile).perform();
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitForElement(driver, notificationItem);
+        waitUntilElementIsNotDisplayed(notificationItems);
 
         profile.click();
-        WaiterWrapperClass.waitForElement(driver, userName);
+        waitForElement(driver, userName);
 
         return userName.getText();
     }

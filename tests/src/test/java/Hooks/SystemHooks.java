@@ -4,6 +4,9 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
+import static core.driver.WebDriverFactory.clearDriver;
+import static core.driver.WebDriverFactory.getDriver;
+
 public class SystemHooks {
 
     @Before
@@ -13,6 +16,7 @@ public class SystemHooks {
 
     @After
     public void AfterDisplayMessage(Scenario scenario) {
-        System.out.println("After " + scenario.getName());
+        getDriver().quit();
+        clearDriver();
     }
 }

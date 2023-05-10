@@ -22,6 +22,10 @@ public class ProfileMenu extends BasePage {
     private WebElement userName;
 
     public String getLoggedUserName() {
+        //todo:
+
+
+
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {

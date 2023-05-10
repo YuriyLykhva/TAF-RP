@@ -1,4 +1,4 @@
-@ApiFeature
+@Api
 Feature: API
 
   @GetTest @Test1

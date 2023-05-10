@@ -1,22 +1,22 @@
 package Hooks;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
-import io.cucumber.java.Scenario;
+import io.cucumber.java8.En;
+import io.cucumber.java8.Scenario;
 
 import static core.driver.WebDriverFactory.clearDriver;
 import static core.driver.WebDriverFactory.getDriver;
 
-public class SystemHooks {
+public class SystemHooks implements En {
+    public SystemHooks (){
 
-    @Before
-    public void BeforeDisplayMessage(Scenario scenario) {
-        System.out.println("Before " + scenario.getName());
+        Before((Scenario scenario) -> {
+            System.out.println("Before " + scenario.getName());
+        });
+
+        After(() -> {
+            getDriver().quit();
+            clearDriver();
+        });
     }
 
-    @After
-    public void AfterDisplayMessage(Scenario scenario) {
-        getDriver().quit();
-        clearDriver();
-    }
 }

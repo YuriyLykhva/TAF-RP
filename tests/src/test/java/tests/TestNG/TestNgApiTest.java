@@ -1,72 +1,63 @@
-package tests;
+package tests.TestNG;
 
 import core.model.User;
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import org.junit.jupiter.api.*;
+import org.testng.annotations.Test;
 
 import java.util.Random;
 
 import static io.restassured.RestAssured.given;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class ApiTest {
+public class TestNgApiTest {
     static User user = User.createUser();
     static String token = user.getToken();
     static int index = new Random().nextInt(100000);
     static int filterId, dashboardId;
 
-    @BeforeAll
-    public static void setup() {
-        RestAssured.baseURI = "http://localhost:8080/api/v1/";
-        RestAssured.authentication = RestAssured.oauth2(token);
-        RestAssured.proxy(8888);
-    }
+    String baseUrl = "http://localhost:8080/api/v1/";
 
-    RequestSpecification requestSpecification = given()
-            .log().all()
-            .contentType(ContentType.JSON);
+    RequestSpecification requestSpecification =
+            given()
+                    .auth().oauth2(token)
+                    .proxy(8888)
+                    .contentType(ContentType.JSON)
+                    .baseUri(baseUrl);
 
-    @Test
-    @Order(2)
+    @Test(priority = 1)
     public void getUserTest() {
 
         String url = "user";
 
-        Response response = requestSpecification.log().all().request(Method.GET, url);
+        Response response = requestSpecification.request(Method.GET, url);
 
         assertEquals(user.getRole(), response.jsonPath().getString("userRole"));
-        assertEquals(200, response.getStatusCode());
+        assertEquals(response.getStatusCode(), 201);
     }
 
-    @Test
-    @Order(2)
+    @Test(priority = 1)
     public void getLaunchStatusTest() {
 
         String url = user.getUserProject() + "/launch/status";
 
         Response response = requestSpecification
                 .param("ids", 6)
-                .log().all()
                 .request(Method.GET, url);
 
-        assertEquals("PASSED", response.jsonPath().getString("6"));
-        assertEquals(200, response.getStatusCode());
+        assertEquals(response.jsonPath().getString("6"), "PASSED");
+        assertEquals(response.getStatusCode(), 200);
     }
 
-    @Test
-    @Order(2)
+    @Test(priority = 1)
     public void getLaunchByIdTest() {
 
         String url = user.getUserProject() + "/launch/e696deee-5a9c-463a-9a87-9ae85ae3baba";
 
-        Response response = requestSpecification
-                .request(Method.GET, url);
+        Response response = requestSpecification.request(Method.GET, url);
 
         assertEquals("DEFAULT", response.jsonPath().getString("mode"));
         assertEquals("5", response.jsonPath().getString("statistics.executions.total"));
@@ -75,21 +66,18 @@ public class ApiTest {
         assertEquals(200, response.getStatusCode());
     }
 
-    @Test
-    @Order(2)
+    @Test(priority = 1)
     public void getWidgetByIdTest() {
 
         String url = user.getUserProject() + "/widget/2";
 
-        Response response = requestSpecification
-                .request(Method.GET, url);
+        Response response = requestSpecification.request(Method.GET, url);
 
         assertEquals("LAUNCH STATISTICS AREA", response.jsonPath().getString("name"));
         assertEquals(200, response.getStatusCode());
     }
 
-    @Test
-    @Order(1)
+    @Test(priority = 1)
     public void createUserTest() {
 
         String url = "user";
@@ -112,14 +100,13 @@ public class ApiTest {
                         .body(requestBody)
                         .when()
                         .post(url)
-                        .then().log().all().statusCode(201)
+                        .then().statusCode(201)
                         .extract().response();
 
         assertEquals(String.format("user%d", index), response.jsonPath().getString("login"));
     }
 
-    @Test
-    @Order(1)
+    @Test(priority = 1)
     public void createDashboardTest() {
 
         String url = user.getUserProject() + "/dashboard";
@@ -135,14 +122,13 @@ public class ApiTest {
                         .body(requestBody)
                         .when()
                         .post(url)
-                        .then().log().all().statusCode(201)
+                        .then().statusCode(201)
                         .extract().response();
 
         dashboardId = response.jsonPath().getInt("id");
     }
 
-    @Test
-    @Order(1)
+    @Test(priority = 1)
     public void createFilterTest() {
 
         String url = user.getUserProject() + "/filter";
@@ -172,13 +158,12 @@ public class ApiTest {
                         .body(requestBody)
                         .when()
                         .post(url)
-                        .then().log().all().statusCode(201)
+                        .then().statusCode(201)
                         .extract().response();
         filterId = response.jsonPath().getInt("id");
     }
 
-    @Test
-    @Order(4)
+    @Test(priority = 3)
     public void deleteFilterTest() {
 
         String url = user.getUserProject() + "/filter/" + filterId;
@@ -186,12 +171,11 @@ public class ApiTest {
         given(requestSpecification)
                 .when()
                 .delete(url)
-                .then().log().all()
+                .then()
                 .statusCode(200);
     }
 
-    @Test
-    @Order(4)
+    @Test(priority = 3)
     public void deleteDashboardTest() {
 
         String url = user.getUserProject() + "/dashboard/" + dashboardId;
@@ -199,12 +183,11 @@ public class ApiTest {
         given(requestSpecification)
                 .when()
                 .delete(url)
-                .then().log().all()
+                .then()
                 .statusCode(200);
     }
 
-    @Test
-    @Order(4)
+    @Test(priority = 3)
     public void deleteUserTest() {
 
         String url = "user";
@@ -215,12 +198,11 @@ public class ApiTest {
                 .body(requestBody)
                 .when()
                 .delete(url)
-                .then().log().all()
+                .then()
                 .statusCode(200);
     }
 
-    @Test
-    @Order(3)
+    @Test(priority = 2)
     public void updateWidgetTest() {
 
         String url = user.getUserProject() + "/widget/2";
@@ -420,10 +402,11 @@ public class ApiTest {
                         .body(requestBody)
                         .when()
                         .put(url)
-                        .then().log().all().statusCode(200)
+                        .then()
+                        .statusCode(200)
                         .extract().response();
 
-        assertEquals("Widget with ID = '2' successfully updated.",
-                response.jsonPath().getString("message"));
+        assertEquals(response.jsonPath().getString("message"),
+                "Widget with ID = '2' successfully updated.");
     }
 }

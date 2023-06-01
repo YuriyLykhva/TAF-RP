@@ -17,7 +17,9 @@ public class LaunchesPage extends BasePage {
     @FindBy(xpath = "//a[@href='#superadmin_personal/launches']")
     private WebElement launches;
 
+
     public LaunchesPage openLaunchesPage() {
+
         WaiterWrapperClass.waitForElement(driver, launches);
         launches.click();
         return this;

@@ -1,17 +1,15 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
 
-<suite name="Suite1" verbose="1" parallel="methods" thread-count="8">
-<!--    <parameter name="browser" value="CHROME"/>-->
+<suite name="Suite1" verbose="1">
 
-<!--    <listeners>-->
-<!--        <listener class-name="core.util.JUnitTestListener"/>-->
-<!--    </listeners>-->
+    <listeners>
+        <listener class-name="core.util.TestListener"/>
+    </listeners>
 
-    <test thread-count="8" name="all tests">
+    <test name="all tests">
         <classes>
-            <class name="tests.ApiTest"/>
-            <class name="tests.LoginTest"/>
-            <class name="tests.LaunchesTest"/>
+            <class name="tests.TestNG.TestNgApiTest"/>
+            <class name="tests.TestNG.TestNgLaunchesTest"/>
         </classes>
     </test>
 </suite>

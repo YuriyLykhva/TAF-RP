@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static core.util.Constants.SIGNIN_PAGE_URL;
+import static core.util.Settings.PROPERTIES;
 
 public class SignInPage extends BasePage {
 
@@ -14,6 +14,7 @@ public class SignInPage extends BasePage {
         super();
         PageFactory.initElements(driver, this);
     }
+    String signinPageUrl = PROPERTIES.getProperty("SIGNIN_PAGE_URL");
 
     /**
      * Web Elements
@@ -32,7 +33,7 @@ public class SignInPage extends BasePage {
      * @return Sign In Page opens
      */
     public SignInPage openPage() {
-        driver.get(SIGNIN_PAGE_URL);
+        driver.get(signinPageUrl);
         WaiterWrapperClass.waitForElement(driver, loginField);
         return this;
     }

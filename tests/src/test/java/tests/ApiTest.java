@@ -25,7 +25,6 @@ public class ApiTest {
     public static void setup() {
         RestAssured.baseURI = "http://localhost:8080/api/v1/";
         RestAssured.authentication = RestAssured.oauth2(token);
-        RestAssured.proxy(8888);
     }
 
     RequestSpecification requestSpecification = given()

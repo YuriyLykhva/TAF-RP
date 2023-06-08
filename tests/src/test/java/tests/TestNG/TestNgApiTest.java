@@ -24,7 +24,6 @@ public class TestNgApiTest {
     RequestSpecification requestSpecification =
             given()
                     .auth().oauth2(token)
-                    .proxy(8888)
                     .contentType(ContentType.JSON)
                     .baseUri(baseUrl);
 
@@ -36,7 +35,7 @@ public class TestNgApiTest {
         Response response = requestSpecification.request(Method.GET, url);
 
         assertEquals(user.getRole(), response.jsonPath().getString("userRole"));
-        assertEquals(response.getStatusCode(), 201);
+        assertEquals(response.getStatusCode(), 200);
     }
 
     @Test(priority = 1)

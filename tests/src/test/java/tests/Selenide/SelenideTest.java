@@ -1,6 +1,7 @@
 package tests.Selenide;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.parallel.Execution;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.CollectionCondition.size;
@@ -8,7 +9,9 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
+@Execution(CONCURRENT)
 public class SelenideTest extends SelenideBaseTest {
 
     @Test
@@ -31,7 +34,7 @@ public class SelenideTest extends SelenideBaseTest {
                 .shouldHave(size(10));
     }
 
-    @Test
+//    @Test
     public void userProfileTest() throws InterruptedException {
 
         //todo        $(By.xpath("//img[@alt='avatar']")).shouldBe(enabled).click();

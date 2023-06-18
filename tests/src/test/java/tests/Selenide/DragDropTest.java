@@ -2,6 +2,8 @@ package tests.Selenide;
 
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.parallel.Execution;
+import org.junit.jupiter.api.parallel.ExecutionMode;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 
@@ -9,6 +11,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static core.driver.WebDriverFactory.getDriver;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Execution(ExecutionMode.CONCURRENT)
 public class DragDropTest extends SelenideBaseTest {
     @Test
     public void dragAndDropTest() {

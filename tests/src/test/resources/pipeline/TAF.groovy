@@ -6,13 +6,9 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-                bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
-                bat 'git submodule init'
-                bat 'git submodule update'
-                bat 'mvn clean'
             }
         }
-       /* stage('Checkout') {
+        stage('Checkout') {
             steps {
                 bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
                 bat 'git submodule init'
@@ -23,7 +19,7 @@ pipeline {
             steps {
                 bat 'mvn clean'
             }
-        }*/
+        }
         stage('Install') {
             steps {
                 bat 'mvn install'
@@ -40,9 +36,4 @@ pipeline {
             }
         }
     }
-    post {
-      always {
-        junit '**/reports/junit/*.xml'
-      }
-   } 
 }

@@ -1,6 +1,9 @@
 package pipeline
 pipeline {
     agent any
+    triggers {
+        cron('H 4 * * *')
+    }
     stages {
         stage('Cleanup') {
             steps {

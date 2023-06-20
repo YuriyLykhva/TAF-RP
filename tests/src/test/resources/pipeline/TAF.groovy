@@ -15,21 +15,21 @@ pipeline {
                 bat 'git submodule update'
             }
         }
-        stage('Sonar') {
+        stage('Test') {
             steps {
-                bat 'mvn clean verify sonar:sonar -D sonar.projectKey=TAF -D sonar.token=squ_ac3cb2cfdc23c673de95ee42877f706d40b978f3'
+                bat 'mvn clean test'
             }
         }
-        /*stage('Test') {
-            steps {
-                bat 'mvn test'
-            }
-        }*/
-        /*stage('Install') {
+        stage('Install') {
             steps {
                 bat 'mvn install'
             }
-        }*/
+        }
+        stage('Sonar') {
+            steps {
+                bat 'mvn sonar:sonar -D sonar.projectKey=TAF -D sonar.token=squ_ac3cb2cfdc23c673de95ee42877f706d40b978f3'
+            }
+        }
         stage('Allure') {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'tests/target/allure-results']]

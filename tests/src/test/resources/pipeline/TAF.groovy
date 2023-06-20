@@ -15,9 +15,9 @@ pipeline {
                 bat 'git submodule update'
             }
         }
-        stage('Test') {
+        stage('Clean') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn clean'
             }
         }
         stage('Install') {

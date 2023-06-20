@@ -20,11 +20,11 @@ pipeline {
                 bat 'mvn clean verify sonar:sonar -D sonar.projectKey=TAF -D sonar.token=squ_ac3cb2cfdc23c673de95ee42877f706d40b978f3'
             }
         }
-        stage('Test') {
+        /*stage('Test') {
             steps {
                 bat 'mvn test'
             }
-        }
+        }*/
         /*stage('Install') {
             steps {
                 bat 'mvn install'

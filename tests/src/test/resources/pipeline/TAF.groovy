@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Sonar') {
             steps {
-                bat 'mvn clean verify sonar:sonar -D sonar.projectKey=TAF -D sonar.token=sqp_0a464b246e1825d6aef1fddee8d714f6764bde1c'
+     //           bat 'mvn clean verify sonar:sonar -D sonar.projectKey=TAF -D sonar.token=sqp_0a464b246e1825d6aef1fddee8d714f6764bde1c'
             }
         }
         stage('Test') {

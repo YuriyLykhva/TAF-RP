@@ -6,13 +6,9 @@ pipeline {
             steps {
                 cleanWs()
                 checkout scm
-            }
-            steps {
                 bat 'git clone https://github.com/YuriyLykhva/TAF-RP.git'
                 bat 'git submodule init'
                 bat 'git submodule update'
-            }
-            steps {
                 bat 'mvn clean'
             }
         }

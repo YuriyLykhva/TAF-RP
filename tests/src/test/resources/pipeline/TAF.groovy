@@ -4,7 +4,7 @@ pipeline {
     parameters {
         booleanParam(name: "USE_REMOTE_WEB_DRIVER", defaultValue: true, description: "Should we use REMOTE_WEB_DRIVER instead of run build locally?")
         string(name: "WAIT_TIMEOUT_SECONDS", defaultValue: "15", trim: true, description: "Enter timeout value in sec")
-        choice(name: "ENVIRONMENT", choices: ["prod", "staging", "dev"], description: "Choose the environment")
+        choice(name: "ENVIRONMENT", choices: ["Prod", "Staging", "Dev"], description: "Choose the environment")
     }
     triggers {
         cron('H 8 * * *')

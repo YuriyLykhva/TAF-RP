@@ -55,7 +55,6 @@ pipeline {
         stage('Allure') {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'tests/target/allure-results']]
-                echo "Hello $params.USE_REMOTE_WEB_DRIVER"
             }
         }
     }

@@ -23,14 +23,14 @@ pipeline {
                 bat 'mvn clean'
             }
         }
-        stage('Install') {
-            steps {
-                bat 'mvn install'
-            }
-        }
         stage('Sonar') {
             steps {
                 bat 'mvn sonar:sonar -D sonar.projectKey=TAF -D sonar.token=squ_ac3cb2cfdc23c673de95ee42877f706d40b978f3'
+            }
+        }
+        stage('Install') {
+            steps {
+                bat 'mvn install'
             }
         }
         stage('Allure') {

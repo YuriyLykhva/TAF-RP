@@ -1,12 +1,23 @@
 package pipeline
 pipeline {
     agent any
+    parameters {
+        booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
+        string(name: "TEST_STRING", defaultValue: "ssbostan", trim: true, description: "Sample string parameter")
+        text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
+        password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
+        choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
+    }
     triggers {
         cron('H 8 * * *')
     }
     stages {
         stage('Cleanup') {
             steps {
+                script {
+                    currentBuild.displayName = "This is a build #${BUILD_NUMBER}"
+                    currentBuild.description = "Here is some useful description"
+                }
                 cleanWs()
                 checkout scm
             }
@@ -25,10 +36,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script {
+                /*script {
                     currentBuild.displayName = "This is a build #${BUILD_NUMBER}"
                     currentBuild.description = "Here is some useful description"
-                }
+                }*/
                 bat 'mvn compile'
             }
         }

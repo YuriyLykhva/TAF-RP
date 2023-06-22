@@ -14,6 +14,10 @@ pipeline {
     stages {
         stage('Cleanup') {
             steps {
+                script {
+                    currentBuild.displayName = "This is a build #${BUILD_NUMBER}"
+                    currentBuild.description = "Here is some useful description"
+                }
                 cleanWs()
                 checkout scm
             }
@@ -32,10 +36,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-                script {
+                /*script {
                     currentBuild.displayName = "This is a build #${BUILD_NUMBER}"
                     currentBuild.description = "Here is some useful description"
-                }
+                }*/
                 bat 'mvn compile'
             }
         }

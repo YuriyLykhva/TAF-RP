@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the project from Git
+                checkout([$class: 'GitSCM', branches: [[name: '*/multi-thread-project']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/YuriyLykhva/TAF-RP']]])
+            }
+        }
+        stage('Build') {
+            steps {
+                // Build the Maven project
+                sh 'mvn clean package'
+            }
+        }
+        stage('Test') {
+            steps {
+                // Run the TestNG tests using Maven
+                sh 'mvn test'
+            }
+            post {
+                // Publish the TestNG test results
+                always {
+                    junit 'target/surefire-reports/**/*.xml'
+                }
+            }
+        }
+    }
+}

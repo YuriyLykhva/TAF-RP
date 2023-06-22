@@ -26,8 +26,8 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    currentBuild.displayName = "The name."
-                    currentBuild.description = "The best description."
+                    currentBuild.displayName = "#${BUILD_NUMBER}, branch ${BRANCH}"
+                    currentBuild.description = "#${BUILD_NUMBER}, branch ${BRANCH}"
                 }
                 bat 'mvn compile'
             }
@@ -40,7 +40,7 @@ pipeline {
         stage('Install') {
             steps {
                 bat 'mvn install'
-                junit 'reports/**/*.xml'
+                junit 'test/target/surefire-reports/testng-native-results/junitreports/**/*.xml'
             }
         }
         stage('Allure') {

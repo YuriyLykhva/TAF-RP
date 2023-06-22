@@ -34,10 +34,6 @@ pipeline {
         }
         stage('Build') {
             steps {
-                /*script {
-                    currentBuild.displayName = "This is a build #${BUILD_NUMBER}"
-                    currentBuild.description = "Here is some useful description"
-                }*/
                 bat 'mvn compile'
             }
         }

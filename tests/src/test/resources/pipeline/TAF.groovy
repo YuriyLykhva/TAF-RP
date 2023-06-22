@@ -36,6 +36,7 @@ pipeline {
         stage('Install') {
             steps {
                 bat 'mvn install'
+                junit 'reports/**/*.xml'
             }
         }
         stage('Allure') {

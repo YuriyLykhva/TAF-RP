@@ -2,7 +2,7 @@ package pipeline
 pipeline {
     agent any
     parameters {
-        booleanParam(name: "TEST_BOOLEAN", defaultValue: true, description: "Sample boolean parameter")
+        booleanParam(name: "USE_REMOTE_WEB_DRIVER", defaultValue: true, description: "Should we use REMOTE_WEB_DRIVER instead of run build locally?")
         string(name: "TEST_STRING", defaultValue: "ssbostan", trim: true, description: "Sample string parameter")
         text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
         password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
@@ -57,6 +57,7 @@ pipeline {
         stage('Allure') {
             steps {
                 allure includeProperties: false, jdk: '', results: [[path: 'tests/target/allure-results']]
+                echo "Hello $params.USE_REMOTE_WEB_DRIVER"
             }
         }
     }

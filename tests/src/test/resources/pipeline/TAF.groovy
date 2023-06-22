@@ -25,10 +25,10 @@ pipeline {
         }
         stage('Build') {
             steps {
-         //       script {
-                    currentBuild.displayName = "#${BUILD_NUMBER}, branch ${BRANCH}"
-                    currentBuild.description = "#${BUILD_NUMBER}, branch ${BRANCH}"
-        //        }
+                script {
+                    currentBuild.displayName = "#${BUILD_NUMBER}"
+                    currentBuild.description = "some description"
+                }
                 bat 'mvn compile'
             }
         }

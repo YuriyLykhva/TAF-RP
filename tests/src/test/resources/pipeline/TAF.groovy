@@ -3,10 +3,8 @@ pipeline {
     agent any
     parameters {
         booleanParam(name: "USE_REMOTE_WEB_DRIVER", defaultValue: true, description: "Should we use REMOTE_WEB_DRIVER instead of run build locally?")
-        string(name: "TEST_STRING", defaultValue: "ssbostan", trim: true, description: "Sample string parameter")
-        text(name: "TEST_TEXT", defaultValue: "Jenkins Pipeline Tutorial", description: "Sample multi-line text parameter")
-        password(name: "TEST_PASSWORD", defaultValue: "SECRET", description: "Sample password parameter")
-        choice(name: "TEST_CHOICE", choices: ["production", "staging", "development"], description: "Sample multi-choice parameter")
+        string(name: "WAIT_TIMEOUT_SECONDS", defaultValue: "15", trim: true, description: "Enter timeout value in sec")
+        choice(name: "ENVIRONMENT", choices: ["production", "staging", "development"], description: "Choose the environment")
     }
     triggers {
         cron('H 8 * * *')

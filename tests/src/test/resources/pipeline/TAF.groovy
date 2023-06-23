@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn compile'
+                bat 'mvn compile -D USE_REMOTE_WEB_DRIVER=${USE_REMOTE_WEB_DRIVER}'
             }
         }
         stage('Sonar') {

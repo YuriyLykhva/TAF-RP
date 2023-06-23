@@ -13,7 +13,7 @@ pipeline {
         stage('Cleanup') {
             steps {
                 script {
-                    currentBuild.displayName = "${ENVIRONMENT} #${BUILD_NUMBER}"
+                    currentBuild.displayName = "${USE_REMOTE_WEB_DRIVER} + ${ENVIRONMENT} #${BUILD_NUMBER}"
                     currentBuild.description = "Here is some useful description"
                 }
                 cleanWs()
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat 'mvn install -D USE_REMOTE_WEB_DRIVER=true'
+                bat 'mvn install -D USE_REMOTE_WEB_DRIVER=${USE_REMOTE_WEB_DRIVER}'
                 junit 'tests/target/surefire-reports/testng-native-results/junitreports/*.xml'
             }
         }

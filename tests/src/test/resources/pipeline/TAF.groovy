@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat 'mvn install -D USE_REMOTE_WEB_DRIVER=false'
+                bat 'mvn install -D USE_REMOTE_WEB_DRIVER=true'
                 junit 'tests/target/surefire-reports/testng-native-results/junitreports/*.xml'
             }
         }

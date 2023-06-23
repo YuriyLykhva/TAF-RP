@@ -34,7 +34,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn compile -D USE_REMOTE_WEB_DRIVER=${USE_REMOTE_WEB_DRIVER}'
+                bat 'mvn compile'
             }
         }
         stage('Sonar') {
@@ -44,7 +44,7 @@ pipeline {
         }
         stage('Install') {
             steps {
-                bat 'mvn install'
+                bat 'mvn install -D USE_REMOTE_WEB_DRIVER=false'
                 junit 'tests/target/surefire-reports/testng-native-results/junitreports/*.xml'
             }
         }

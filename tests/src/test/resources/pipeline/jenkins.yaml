@@ -1,0 +1,225 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - usernamePassword:
+          id: "ae044922-6c19-4f14-a1bd-3c8511d60bac"
+          password: "{AQAAABAAAAAw4/IiETKh4sazShRUPlVpsTkZs4h26qZDe4FgNCXIDWB0WJ41WSYksmU62RCKScWMjV94Yqe3206Kq2aY3BqCdw==}"
+          scope: GLOBAL
+          username: "admin"
+      - usernamePassword:
+          description: "jenkins-1"
+          id: "jenkins-1"
+          password: "{AQAAABAAAAAwLTMLGZqoBKUDiksZVoZUXf75xbA9kv8eev5e7jNXHFJOD/nPgDFk2E2+pUEYWV2OZhTrnw2ZuLDHpZtUjg8m0g==}"
+          scope: GLOBAL
+          username: "yuriy.lykhva@gmail.com"
+          usernameSecret: true
+      - usernamePassword:
+          description: "jenkins2"
+          id: "jenkins2"
+          password: "{AQAAABAAAAAwYEheRzs2B2ISDroOAVW8TSYjbQiDhS/bMr2dqhUAEnivEbaGe4gxTwyUHGqxvjFAmBXufdjBEKdcWhkWWArHbg==}"
+          scope: GLOBAL
+          username: "yuriy.lykhva@gmail.com"
+          usernameSecret: true
+      - usernamePassword:
+          id: "fea4a357-2a9b-476a-81a5-fcfc6a5313e3"
+          password: "{AQAAABAAAAAQxl8H/AnetgpT/BF6xn+niCEC9o1AYyvFG5ol3hF9O2A=}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          description: "admin"
+          id: "b3d65915-dbaf-4b8c-b7c3-0b1424a5d180"
+          password: "{AQAAABAAAAAQcOK4FR4gxnFmBd3gpXIua3HUP1+FLmAIGkTGMBuJGlM=}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          description: "admin"
+          id: "58c6c584-16c8-4df3-8f7f-b7e09d7e9906"
+          password: "{AQAAABAAAAAQgvJIyO1XDPybthNBO6GPo/YzCVA48P0bneFK6wzJr6s=}"
+          scope: GLOBAL
+          username: "admin"
+          usernameSecret: true
+      - usernamePassword:
+          description: "jenk"
+          id: "33014cba-c632-4fa9-894c-8a85ff53745c"
+          password: "{AQAAABAAAAAQGpXSigbTsxg6hNXHXGgMzixVmIXJnF+UKOgMQ2Ofm9Q=}"
+          scope: GLOBAL
+          username: "yuriy.lykhva@gmail.com"
+          usernameSecret: true
+      - string:
+          description: "jenkins-new"
+          id: "34a4f810-d3cd-492c-9c83-97e317ad55ef"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAAwcIoAvh0rznTaFHV52Z2l1iY3xx0KkI6gEVpUcVP1E3HnD/02zlr/HRafK7jeK3wMWQGqAmRPqvL4jXgAshVLHw==}"
+jenkins:
+  agentProtocols:
+  - "JNLP4-connect"
+  - "Ping"
+  crumbIssuer:
+    standard:
+      excludeClientIPFromCrumb: false
+  disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "jenkins.diagnostics.ControllerExecutorsNoAgents"
+  labelAtoms:
+  - name: "built-in"
+  markupFormatter:
+    rawHtml:
+      disableSyntaxHighlighting: false
+  mode: NORMAL
+  myViewsTabBar: "standard"
+  numExecutors: 2
+  primaryView:
+    all:
+      name: "all"
+  projectNamingStrategy: "standard"
+  quietPeriod: 5
+  remotingSecurity:
+    enabled: true
+  scmCheckoutRetryCount: 0
+  securityRealm:
+    local:
+      allowsSignup: false
+      enableCaptcha: false
+      users:
+      - id: "admin"
+        name: "admin"
+        properties:
+        - "apiToken"
+        - "myView"
+        - "timezone"
+        - "mailer"
+        - preferredProvider:
+            providerId: "default"
+  slaveAgentPort: -1
+  systemMessage: "<h1>Report Portal Test Automation Framework</h1>"
+  updateCenter:
+    sites:
+    - id: "default"
+      url: "https://updates.jenkins.io/update-center.json"
+  views:
+  - all:
+      name: "all"
+  viewsTabBar: "standard"
+globalCredentialsConfiguration:
+  configuration:
+    providerFilter: "none"
+    typeFilter: "none"
+security:
+  apiToken:
+    creationOfLegacyTokenEnabled: false
+    tokenGenerationOnCreationEnabled: false
+    usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: true
+    allowedOnController: true
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
+  sSHD:
+    port: -1
+unclassified:
+  buildDiscarders:
+    configuredBuildDiscarders:
+    - "jobBuildDiscarder"
+  buildStepOperation:
+    enabled: false
+  email-ext:
+    adminRequiredForTemplateTesting: false
+    allowUnregisteredEnabled: false
+    charset: "UTF-8"
+    debugMode: false
+    defaultBody: |-
+      $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+
+      Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
+    defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
+    defaultTriggerIds:
+    - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
+    maxAttachmentSize: -1
+    maxAttachmentSizeMb: -1
+    precedenceBulk: false
+    watchingEnabled: false
+  enrichedSummaryConfig:
+    enrichedSummaryEnabled: false
+    httpClientDelayBetweenRetriesInSeconds: 1
+    httpClientMaxRetries: 3
+    httpClientTimeoutInSeconds: 1
+  fingerprints:
+    fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    configs:
+    - credentialsId: "34a4f810-d3cd-492c-9c83-97e317ad55ef"
+      name: "My-GitHub-Server"
+    hookUrl: "http://localhost:8090/github-webhook/"
+  globalTimeOutConfiguration:
+    operations:
+    - "abortOperation"
+    overwriteable: false
+  injectionConfig:
+    allowUntrusted: false
+    enabled: false
+    injectCcudExtension: false
+    injectMavenExtension: false
+  junitTestResultStorage:
+    storage: "file"
+  location:
+    adminAddress: "address not configured yet <nobody@nowhere>"
+    url: "http://localhost:8090/"
+  mailer:
+    charset: "UTF-8"
+    useSsl: false
+    useTls: false
+  mavenModuleSet:
+    localRepository: "default"
+  pollSCM:
+    pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+  timestamper:
+    allPipelines: false
+    elapsedTimeFormat: "'<b>'HH:mm:ss.S'</b> '"
+    systemTimeFormat: "'<b>'HH:mm:ss'</b> '"
+tool:
+  allure:
+    installations:
+    - name: "Allure"
+      properties:
+      - installSource:
+          installers:
+          - allureCommandlineInstaller:
+              id: "2.20.1"
+  git:
+    installations:
+    - home: "git.exe"
+      name: "Default"
+  maven:
+    installations:
+    - name: "maven"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.9.1"
+  mavenGlobalConfig:
+    globalSettingsProvider: "standard"
+    settingsProvider: "standard"
+  pipelineMaven:
+    triggerDownstreamUponResultAborted: false
+    triggerDownstreamUponResultFailure: false
+    triggerDownstreamUponResultNotBuilt: false
+    triggerDownstreamUponResultSuccess: true
+    triggerDownstreamUponResultUnstable: false
